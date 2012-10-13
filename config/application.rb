@@ -4,6 +4,7 @@ require File.expand_path('../boot', __FILE__)
 action_controller
 action_mailer
 rails/test_unit
+sprockets
 ).each do |framework|
     require "#{framework}/railtie"
 end
