@@ -17,4 +17,7 @@ class User
     self.token = auth['credentials']['token']
   end
 
+  def user_url
+  end
+
 end

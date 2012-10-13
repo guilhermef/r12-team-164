@@ -1,0 +1,37 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile {
+  margin-top:20px;
+
+  .picture {
+    width:160px;
+    height:160px;
+    display:inline-block;
+  }
+  .info {
+    display:inline-block;
+    vertical-align: top;
+  }
+}
+
+.user-statistics {
+  margin-top:20px;
+  font-size:0;
+  ol {
+    font-size:14px;
+    display:inline-block;
+    width:300px;
+    margin-left:20px;
+    &:first-child {
+      margin:0;
+    }
+    li {
+      margin-bottom:10px;
+    }
+    p {
+      display:inline-block;
+    }
+  }
+}

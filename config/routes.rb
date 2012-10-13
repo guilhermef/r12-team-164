@@ -50,9 +50,8 @@ RealLifeSocial::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'welcome#index'
 
-  resource :users do
-    match '/auth/:provider/callback' => 'users#create'
-  end
+  resource :user, only: :show
+  match '/users/auth/:provider/callback' => 'users#create', as: :user_callback
 
   devise_for :users
 

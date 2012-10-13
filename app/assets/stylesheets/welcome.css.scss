@@ -16,9 +16,9 @@
 
   h1 {
     font-size:120px;
-    letter-spacing: -2px;
+    letter-spacing: 1px;
     line-height: 1;
-    font-weight:bold;
+    font-weight:lighter;
     @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px)
   }
 }

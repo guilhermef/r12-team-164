@@ -22,6 +22,9 @@ class UsersController < ApplicationController
     Resque.enqueue(User, user.to_json)
 
     sign_in user
-    redirect_to root_url
+    redirect_to user
+  end
+
+  def show
   end
 end
