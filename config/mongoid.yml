@@ -5,7 +5,7 @@ development: &defaults
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: social_drink_development
+      database: real_life_social_development
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
@@ -70,14 +70,14 @@ development: &defaults
 production:
   sessions:
     default:
-      database: social_drink
+      database: real_life_social
       hosts:
         - localhost:27017
 
 test:
   sessions:
     default:
-      database: social_drink_test
+      database: real_life_social
       hosts:
         - localhost:27017
       options:

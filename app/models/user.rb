@@ -1,8 +1,7 @@
 class User
   include Mongoid::Document
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  @queue = :real_life_social_user
+
   devise :omniauthable, :authenticatable
 
   field :email, :type => String

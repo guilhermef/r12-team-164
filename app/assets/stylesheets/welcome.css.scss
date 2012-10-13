@@ -1,3 +1,24 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass/css3";
+
+.login {
+  margin-top: 8px;
+}
+
+.welcome {
+  background: url(image_path('welcome-banner.jpg')) no-repeat center;
+  height:350px;
+  text-align:center;
+  color:#fff;
+  @include box-shadow(rgba(#000, .4) 0 2px 8px);
+
+  h1 {
+    font-size:120px;
+    letter-spacing: -2px;
+    line-height: 1;
+    font-weight:bold;
+    @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px)
+  }
+}

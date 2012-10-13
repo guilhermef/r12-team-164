@@ -7,11 +7,13 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'jquery-rails'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'capistrano-resque'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'koala'
+gem 'resque'
 
 # To use debugger
 gem 'debugger'
@@ -19,10 +21,8 @@ gem 'debugger'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'compass-rails'
   gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 

@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-
   def index
     return unless current_user
 
