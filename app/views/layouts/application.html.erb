@@ -3,22 +3,30 @@
   <head>
     <title>SocialDrink</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div id="fb-root"></div>
     <div class='navbar navbar-inverse navbar-static-top'>
       <div class='navbar-inner'>
         <div class='container'>
           <a class='brand' href='/'>
             Social Drink
           </a>
-          <%= link_to 'Login with Facebook', '/users/auth/facebook/' %>
+          <% if user_signed_in? %>
+            <div id="fb-server-authenticated"></div>
+            Welcome <%= current_user.email %>
+          <% else %>
+            <%= link_to 'Login with Facebook', '/users/auth/facebook/' %>
+          <% end %>
         </div>
       </div>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
+
+    <%= javascript_include_tag "application" %>
   </body>
 </html>
