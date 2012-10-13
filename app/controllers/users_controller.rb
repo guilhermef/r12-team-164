@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     Resque.enqueue(User, user.id)
 
     sign_in user
-    redirect_to user
+    redirect_to user_url
   end
 
   def show

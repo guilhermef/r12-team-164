@@ -2,13 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "compass/css3";
 .profile {
   margin-top:20px;
 
   .picture {
-    width:160px;
-    height:160px;
+    width:200px;
     display:inline-block;
+    overflow:hidden;
+    @include border-radius(4px);
   }
   .info {
     display:inline-block;

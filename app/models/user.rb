@@ -26,6 +26,14 @@ class User
     self.registered = true
   end
 
+  def picture
+    "http://graph.facebook.com/#{uid}/picture"
+  end
+
+  def large_picture
+    picture + '?type=large'
+  end
+
   def self.perform(user_id)
     user = User.find(user_id)
 
