@@ -12,29 +12,32 @@
 <section class='user-statistics'>
   <div class='container'>
     <ol>
-      <% 10.times do |i| %>
+      <% current_user.top_friends.each_with_index do |checkin, i| %>
         <li>
-          <span><%= i + 1%></span>
-          <img src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/565097_1156974048_1748282018_n.jpg' width='32' height='32'/>
-          <p>Van Halen</p>
+          <span><%= i + 1 %></span>
+          <%= image_tag(checkin.user2.picture) %>
+          <p><%= checkin.user2.name %></p>
+          <p><%= checkin.count %></p>
         </li>
       <% end %>
     </ol>
     <ol>
-      <% 10.times do |i| %>
+      <% current_user.worst_friends.each_with_index do |checkin, i| %>
         <li>
-          <span><%= i + 1%></span>
-          <img src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/565097_1156974048_1748282018_n.jpg' width='32' height='32'/>
-          <p>Van Halen</p>
+          <span><%= i + 1 %></span>
+          <%= image_tag(checkin.user2.picture) %>
+          <p><%= checkin.user2.name %></p>
+          <p><%= checkin.count %></p>
         </li>
       <% end %>
     </ol>
     <ol>
-      <% 10.times do |i| %>
+      <% current_user.most_recent.each_with_index do |checkin, i| %>
         <li>
-          <span><%= i + 1%></span>
-          <img src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/565097_1156974048_1748282018_n.jpg' width='32' height='32'/>
-          <p>Van Halen</p>
+          <span><%= i + 1 %></span>
+          <%= image_tag(checkin.user2.picture) %>
+          <p><%= checkin.user2.name %></p>
+          <p><%= checkin.checkin_data.max(:timestamp) %></p>
         </li>
       <% end %>
     </ol>
