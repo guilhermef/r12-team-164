@@ -19,6 +19,8 @@ class UsersController < ApplicationController
       end
     end
 
+    user.processing = true
+    user.save!
     Resque.enqueue(User, user.id)
 
     sign_in user

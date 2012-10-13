@@ -12,6 +12,7 @@ class User
   field :token, :type => String
   field :registered, :type => Boolean, :default => false
   field :last_timestamp, :type => Integer
+  field :processing, :type => Boolean, :default => false
 
   has_many :checkins_as_user1, :class_name => 'UserCheckin', :inverse_of => :user1
   has_many :checkins_as_user2, :class_name => 'UserCheckin', :inverse_of => :user2
@@ -63,7 +64,7 @@ class User
         other_user = User.where(:uid => id).first
 
         unless other_user
-          user_data = graph.fql_query("SELECT uid, name, pic_square FROM user WHERE uid = #{id}")
+          user_data = graph.fql_query("SELECT uid, name, pic_square FROM user WHERE uid = #{id}")[0]
           other_user = User.create!(:uid => id, :name => user_data['name'], :photo_url => user_data['pic_square'])
         end
 
@@ -96,6 +97,7 @@ class User
       end
     end
 
+    user.processing = false
     user.last_timestamp = last_timestamp
     user.save!
   end
