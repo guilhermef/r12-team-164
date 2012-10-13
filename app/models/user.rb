@@ -12,6 +12,7 @@ class User
   field :token, :type => String
   field :registered, :type => Boolean, :default => false
   field :last_timestamp, :type => Integer
+  field :processing, :type => Boolean, :default => false
 
   has_many :checkins_as_user1, :class_name => 'UserCheckin', :inverse_of => :user1
   has_many :checkins_as_user2, :class_name => 'UserCheckin', :inverse_of => :user2
@@ -88,6 +89,7 @@ class User
       end
     end
 
+    user.processing = false
     user.last_timestamp = last_timestamp
     user.save!
   end
