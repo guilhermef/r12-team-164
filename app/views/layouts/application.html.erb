@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <title>SocialDrink</title>
+    <title>Real Life Social</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= csrf_meta_tags %>
   </head>
@@ -13,14 +13,14 @@
           <a class='brand' href='/'>
             Real Life Social
           </a>
-          <ul class="nav pull-right">
+          <div class="pull-right login">
             <% if user_signed_in? %>
               <div id="fb-server-authenticated"></div>
-              <li>Welcome <%= current_user.email %></li>
+              <span>Welcome <%= current_user.email %></span>
             <% else %>
-              <%= link_to 'Login with Facebook', '/users/auth/facebook/' %>
+              <div class="fb-login-button" data-show-faces="false" data-width="200" data-max-rows="1"></div>
             <% end %>
-          </ul>
+          </div>
         </div>
       </div>
     </div>
