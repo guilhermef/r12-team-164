@@ -7,6 +7,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'jquery-rails'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'capistrano-resque'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

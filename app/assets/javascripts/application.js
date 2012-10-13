@@ -31,7 +31,7 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         var isAuthenticated = $('#fb-server-authenticated').length > 0;
         if (!isAuthenticated && response.status === 'connected') {
-            window.location = document.location.origin + '/users/auth/facebook';
+            window.location = 'http://' + document.location.host + '/users/auth/facebook';
         }
     });
 };
