@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
 
-    user = User.where(provider: auth['provider'], uid: auth['uid']).first
+    user = User.where(uid: auth['uid']).first
 
     if user
       flash[:notice] = "Signed in successfully."
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       end
     end
 
-    Resque.enqueue(User, user.to_json)
+    Resque.enqueue(User, user.id)
 
     sign_in user
     redirect_to root_url
