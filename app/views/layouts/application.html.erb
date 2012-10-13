@@ -11,14 +11,16 @@
       <div class='navbar-inner'>
         <div class='container'>
           <a class='brand' href='/'>
-            Social Drink
+            Real Life Social
           </a>
-          <% if user_signed_in? %>
-            <div id="fb-server-authenticated"></div>
-            Welcome <%= current_user.email %>
-          <% else %>
-            <%= link_to 'Login with Facebook', '/users/auth/facebook/' %>
-          <% end %>
+          <ul class="nav pull-right">
+            <% if user_signed_in? %>
+              <div id="fb-server-authenticated"></div>
+              <li>Welcome <%= current_user.email %></li>
+            <% else %>
+              <%= link_to 'Login with Facebook', '/users/auth/facebook/' %>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>

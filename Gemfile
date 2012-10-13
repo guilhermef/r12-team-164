@@ -11,6 +11,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
+gem 'koala'
 
 # To use debugger
 # gem 'debugger'
