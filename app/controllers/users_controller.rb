@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
 
-    authentication = User.where(provider: auth['provider'], uid: auth['uid']).first
+    user = User.where(provider: auth['provider'], uid: auth['uid']).first
 
-    if authentication
+    if user
       flash[:notice] = "Signed in successfully."
     else
       # Authentication not found, thus a new user.
@@ -17,6 +17,9 @@ class UsersController < ApplicationController
         flash[:error] = "Error while creating a user account. Please try again."
       end
     end
+
+    sign_in user
+
     redirect_to root_url
   end
 end
