@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-
   def index
     if current_user
       graph = Koala::Facebook::GraphAPI.new(current_user.token)
