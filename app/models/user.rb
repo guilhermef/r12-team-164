@@ -26,7 +26,6 @@ class User
     self.registered = true
   end
 
-
   def self.perform(user_id)
     user = User.find(user_id)
 
