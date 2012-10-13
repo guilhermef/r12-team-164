@@ -4,4 +4,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SocialDrink::Application.load_tasks
+RealLifeSocial::Application.load_tasks
+
+require 'resque/tasks'

@@ -12,6 +12,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'koala'
+gem 'resque'
 
 # To use debugger
 # gem 'debugger'

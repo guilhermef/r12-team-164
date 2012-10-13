@@ -15,11 +15,13 @@ class UsersController < ApplicationController
         flash[:notice] = "Account created and signed in successfully."
       else
         flash[:error] = "Error while creating a user account. Please try again."
+        redirect_to root_url and return
       end
     end
 
-    sign_in user
+    Resque.enqueue(User, user.to_json)
 
+    sign_in user
     redirect_to root_url
   end
 end
