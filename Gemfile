@@ -16,7 +16,7 @@ gem 'koala'
 gem 'resque'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
