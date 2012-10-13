@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-
 gem 'mongoid'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
                                :branch => 'static'
-
 gem 'jquery-rails'
-
-# Deploy with Capistrano
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 
 # To use debugger
 # gem 'debugger'

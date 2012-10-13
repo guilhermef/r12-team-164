@@ -13,9 +13,12 @@
           <a class='brand' href='/'>
             Social Drink
           </a>
+          <%= link_to 'Login with Facebook', '/auth/facebook/' %>
         </div>
       </div>
     </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

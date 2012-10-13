@@ -1,4 +1,5 @@
 SocialDrink::Application.routes.draw do
+  match '/auth/:provider/callback' => 'users#create'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
