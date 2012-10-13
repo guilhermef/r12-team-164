@@ -55,7 +55,7 @@ class User
         other_user = User.where(:uid => id).first
 
         unless other_user
-          user_data = graph.fql_query("SELECT uid, name, pic_square FROM user WHERE uid = #{id}")
+          user_data = graph.fql_query("SELECT uid, name, pic_square FROM user WHERE uid = #{id}")[0]
           other_user = User.create!(:uid => id, :name => user_data['name'], :photo_url => user_data['pic_square'])
         end
 
