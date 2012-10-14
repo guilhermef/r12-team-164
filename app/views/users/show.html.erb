@@ -5,77 +5,114 @@
     </div>
     <div class='info'>
       <h2><%= @user.name %></h2>
-      <p>last seen at <%= @user.last_checkin.place_name %></p>
-      <div id='last_checkin_place'></div>
+      <% if current_user.data_available? %>
+        <p>last seen at <%= @user.last_checkin.place_name %></p>
+        <div id='last_checkin_place'></div>
+      <% end %>
     </div>
   </div>
 </section>
 
 <section class='user-statistics'>
-  <div class='container'>
-    <div class='top10 bf'>
-      <h4>best friends</h4>
-      <ol>
-        <% @user.top_friends.each_with_index do |checkin, i| %>
-          <li>
-            <span class='position'><%= i + 1 %></span>
-            <%= image_tag(checkin.user2.picture) %>
-            <span class='info'>
-              <% if checkin.user2.registered? %>
-                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
-              <% else%>
-                <p><%= checkin.user2.name %></p>
-              <% end %>
-              <p>checkins: <%= checkin.count %></p>
-            </span>
-          </li>
-        <% end %>
-      </ol>
+  <% if current_user.data_available? %>
+    <div class='container'>
+      <div class='top10 bf'>
+        <h4>best friends</h4>
+        <ol>
+          <% @user.top_friends.each_with_index do |checkin, i| %>
+            <li>
+              <span class='position'><%= i + 1 %></span>
+              <%= image_tag(checkin.user2.picture) %>
+              <span class='info'>
+                <% if checkin.user2.registered? %>
+                  <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+                <% else%>
+                  <p><%= checkin.user2.name %></p>
+                <% end %>
+                <p>checkins: <%= checkin.count %></p>
+              </span>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+      <div class='top10 wf'>
+        <h4>worst friends</h4>
+        <ol>
+          <% @user.worst_friends.each_with_index do |checkin, i| %>
+            <li>
+              <span class='position'><%= i + 1 %></span>
+              <%= image_tag(checkin.user2.picture) %>
+              <span class='info'>
+                <% if checkin.user2.registered? %>
+                  <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+                <% else%>
+                  <p><%= checkin.user2.name %></p>
+                <% end %>
+                <p>checkins: <%= checkin.count %></p>
+              </span>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+      <div class='top10 recent'>
+        <h4>most recent</h4>
+        <ol>
+          <% @user.most_recent.each_with_index do |checkin, i| %>
+            <li>
+              <span class='position'><%= i + 1 %></span>
+              <%= image_tag(checkin.user2.picture) %>
+              <span class='info'>
+                <% if checkin.user2.registered? %>
+                  <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+                <% else%>
+                  <p><%= checkin.user2.name %></p>
+                <% end %>
+                <p>last: <%= checkin.checkin_data.max(:timestamp).strftime('%D - %T') %></p>
+              </span>
+            </li>
+          <% end %>
+        </ol>
+      </div>
     </div>
-    <div class='top10 wf'>
-      <h4>worst friends</h4>
-      <ol>
-        <% @user.worst_friends.each_with_index do |checkin, i| %>
-          <li>
-            <span class='position'><%= i + 1 %></span>
-            <%= image_tag(checkin.user2.picture) %>
-            <span class='info'>
-              <% if checkin.user2.registered? %>
-                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
-              <% else%>
-                <p><%= checkin.user2.name %></p>
-              <% end %>
-              <p>checkins: <%= checkin.count %></p>
-            </span>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class='top10 recent'>
-      <h4>most recent</h4>
-      <ol>
-        <% @user.most_recent.each_with_index do |checkin, i| %>
-          <li>
-            <span class='position'><%= i + 1 %></span>
-            <%= image_tag(checkin.user2.picture) %>
-            <span class='info'>
-              <% if checkin.user2.registered? %>
-                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
-              <% else%>
-                <p><%= checkin.user2.name %></p>
-              <% end %>
-              <p>last: <%= checkin.checkin_data.max(:timestamp).strftime('%D - %T') %></p>
-            </span>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div id="line-chart"></div>
-  </div>
+    <div id="line-chart" class="container"></div>
+  <% else %>
+
+    <div class="container spinner">
+      <p>Hang on, we're preparing your data</p>
+    </div>      
+
+  <% end %>
 </section>
 
 <%= content_for :javascript_bottom do %>
   <%= javascript_include_tag "application", 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCcBv1h8modIzituEdiCCrHAXjwmz_GUfU&sensor=true' %>
+
+  <script>
+    (function($) {
+      var opts = {
+        lines: 13, // The number of lines to draw
+        length: 24, // The length of each line
+        width: 8, // The line thickness
+        radius: 19, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 21, // The rotation offset
+        color: '#000', // #rgb or #rrggbb
+        speed: 1.4, // Rounds per second
+        trail: 52, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: 'auto', // Top position relative to parent in px
+        left: 'auto' // Left position relative to parent in px
+      };
+      var target = $('.container.spinner');
+      if (target.length > 0) {
+        new Spinner(opts).spin(target[0]);
+      }
+    }(jQuery));
+  </script>
+
 
   <script>
   $(function() {
