@@ -11,36 +11,46 @@
 
 <section class='user-statistics'>
   <div class='container'>
-    <ol>
-      <% current_user.top_friends.each_with_index do |checkin, i| %>
-        <li>
-          <span><%= i + 1 %></span>
-          <%= image_tag(checkin.user2.picture) %>
-          <p><%= checkin.user2.name %></p>
-          <p><%= checkin.count %></p>
-        </li>
-      <% end %>
-    </ol>
-    <ol>
-      <% current_user.worst_friends.each_with_index do |checkin, i| %>
-        <li>
-          <span><%= i + 1 %></span>
-          <%= image_tag(checkin.user2.picture) %>
-          <p><%= checkin.user2.name %></p>
-          <p><%= checkin.count %></p>
-        </li>
-      <% end %>
-    </ol>
-    <ol>
-      <% current_user.most_recent.each_with_index do |checkin, i| %>
-        <li>
-          <span><%= i + 1 %></span>
-          <%= image_tag(checkin.user2.picture) %>
-          <p><%= checkin.user2.name %></p>
-          <p><%= checkin.checkin_data.max(:timestamp) %></p>
-        </li>
-      <% end %>
-    </ol>
+    <h3>top 10</h3>
+    <div class='top10 bf'>
+      <h4>best friends</h4>
+      <ol>
+        <% current_user.top_friends.each_with_index do |checkin, i| %>
+          <li>
+            <span class='position'><%= i + 1 %></span>
+            <%= image_tag(checkin.user2.picture) %>
+            <p><%= checkin.user2.name %></p>
+            <p><%= checkin.count %></p>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class='top10 wf'>
+      <h4>worst friends</h4>
+      <ol>
+        <% current_user.worst_friends.each_with_index do |checkin, i| %>
+          <li>
+            <span class='position'><%= i + 1 %></span>
+            <%= image_tag(checkin.user2.picture) %>
+            <p><%= checkin.user2.name %></p>
+            <p><%= checkin.count %></p>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class='top10 recent'>
+      <h4>most recent</h4>
+      <ol>
+        <% current_user.most_recent.each_with_index do |checkin, i| %>
+          <li>
+            <span class='position'><%= i + 1 %></span>
+            <%= image_tag(checkin.user2.picture) %>
+            <p><%= checkin.user2.name %></p>
+            <!-- <p><%= checkin.checkin_data.max(:timestamp) %></p> -->
+          </li>
+        <% end %>
+      </ol>
+    </div>
   </div>
   <div id="line-chart"></div>
 </section>

@@ -25,16 +25,34 @@
   background-color: #EEEEEE;
   border-top: 1px solid #CCCCCC;
   padding:30px 0 0;
-  ol {
-    font-size:14px;
+  .top10 {
     display:inline-block;
-    width:300px;
     margin-left:20px;
+    width:300px;
     &:first-child {
       margin:0;
     }
+  }
+  ol {
+    font-size:14px;
+    margin:0;
     li {
       margin-bottom:10px;
+      background-color:#fff;
+      @include box-shadow(rgba(#000, .4) 0 1px 2px);
+      .position {
+        background-color: #3B5B99;
+        color: #FFFFFF;
+        display: inline-block;
+        font-size: 26px;
+        height: 50px;
+        line-height: 47px;
+        text-align: center;
+        vertical-align: middle;
+        width: 34px;
+        margin-right:-3px;
+        @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px);
+      }
     }
     p {
       display:inline-block;
