@@ -36,10 +36,11 @@
   padding:30px 0 0;
   .top10 {
     h4 {
+      @include box-shadow(rgba(#000, .4) 1px 1px 2px);
       background-color: #FFFFFF;
       margin: 0;
       padding: 10px;
-      @include box-shadow(rgba(#000, .4) 0 1px 2px);
+      @include border-radius(4px);
     }
     display:inline-block;
     margin-left:20px;
@@ -62,7 +63,10 @@
     margin:0;
     li {
       background-color:#fff;
-      @include box-shadow(rgba(#000, .4) 0 1px 2px);
+      margin-top:10px;
+      @include box-shadow(rgba(#000, .4) 1px 1px 2px);
+      @include border-radius(4px);
+      overflow:hidden;
       .position {
         background-color: #3B5B99;
         color: #FFFFFF;
@@ -73,7 +77,7 @@
         text-align: center;
         vertical-align: middle;
         width: 34px;
-        margin-right:-3px;
+        margin-right:-4px;
         @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px);
       }
     }
