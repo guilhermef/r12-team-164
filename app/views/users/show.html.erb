@@ -5,6 +5,8 @@
     </div>
     <div class='info'>
       <h2><%= current_user.name %></h2>
+      <p>last checkin:</p>
+      <div id='last_checkin_place'></div>
     </div>
   </div>
 </section>
@@ -60,57 +62,84 @@
   <div id="line-chart"></div>
 </section>
 
-<script>
-$(function() {
+<%= content_for :javascript_bottom do %>
+  <%= javascript_include_tag "application", 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCcBv1h8modIzituEdiCCrHAXjwmz_GUfU&sensor=true' %>
 
-  var chart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'line-chart',
-      type: 'line',
-      marginRight: 130,
-      marginBottom: 25
-    },
-    title: {
-      text: 'Check-ins Over Time',
-      x: -20
-    },
-    xAxis: {
-      categories: <%= months_labels().html_safe %>
-    },
-    yAxis: {
-      title: {
-        text: 'Check-ins'
+  <script>
+  $(function() {
+
+    var chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'line-chart',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
       },
-      plotLines: [{
-        value: 0,
-        width: 1,
-        color: '#808080'
-      }]
-    },
-    tooltip: {
-      formatter: function() {
-        return '<b>'+ this.series.name +'</b><br/>'+
-        this.x +': '+ this.y;
-      }
-    },
-    legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'top',
-      x: -10,
-      y: 100,
-      borderWidth: 0
-    },
-    series: [
-    <% current_user.checkins_as_user1.each_with_index do |checkin, i| %>
-      <% if i > 0 %>,<% end %>
-      {
-        name: '<%= checkin.user2.name %>',
-        data: [<%= checkin.month_count.join(',') %>]
-      }
-    <% end %>
-    ]
-  });
+      title: {
+        text: 'Check-ins Over Time',
+        x: -20
+      },
+      xAxis: {
+        categories: <%= months_labels().html_safe %>
+      },
+      yAxis: {
+        title: {
+          text: 'Check-ins'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+
+          this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [
+      <% current_user.checkins_as_user1.each_with_index do |checkin, i| %>
+        <% if i > 0 %>,<% end %>
+        {
+          name: '<%= checkin.user2.name %>',
+          data: [<%= checkin.month_count.join(',') %>]
+        }
+      <% end %>
+      ]
+    });
 
-});
-</script>
+  });
+  </script>
+
+  <script>
+    $(function() {
+      var position = new google.maps.LatLng(<%= current_user.most_recent[0].checkin_data[0].place_lat %>, <%= current_user.most_recent[0].checkin_data[0].place_long %>);
+      var mapOptions = {
+        center: position,
+        zoom: 18,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("last_checkin_place"),
+          mapOptions);
+
+      var markerOptions = {
+        map: map,
+        position: position,
+        visible: true,
+        title: '<%= current_user.most_recent[0].checkin_data[0].place_name %>'
+      }
+
+      var marker = new google.maps.Marker(markerOptions);
+    });
+  </script>
+
+<% end %>
