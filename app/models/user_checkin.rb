@@ -27,4 +27,20 @@ class UserCheckin
 
   embeds_many :checkin_data
 
+  def month_count
+    groups = checkin_data.group_by { |d| "#{d.timestamp.year}_#{d.timestamp.month}" }
+    current_month = Time.now.month
+    current_year = Time.now.year
+
+    ((current_month - 11)..current_month).map do |month|
+      year = current_year
+      if month <= 0
+        month = 12 + month
+        year -= 1
+      end
+
+      (groups["#{year}_#{month}"] || []).size
+    end
+  end
+
 end
