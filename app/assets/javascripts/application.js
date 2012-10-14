@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require fb
 //= require highcharts
 //= require usercharts
-
 
