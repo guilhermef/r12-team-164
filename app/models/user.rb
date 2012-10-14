@@ -64,6 +64,8 @@ class User
     friends_list = graph.fql_query('SELECT uid2 FROM friend WHERE uid1 = me()')
     user.friends = friends_list.collect{|u| u['uid2']}
 
+    user.save
+
     @checkins = graph.fql_query(<<-EOF
       SELECT author_uid, checkin_id, tagged_uids, page_id, timestamp
       FROM checkin
