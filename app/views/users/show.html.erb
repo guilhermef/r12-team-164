@@ -19,8 +19,10 @@
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
-            <p><%= checkin.user2.name %></p>
-            <p><%= checkin.count %></p>
+            <span class='info'>
+              <p><%= checkin.user2.name %></p>
+              <p>checkins: <%= checkin.count %></p>
+            </span>
           </li>
         <% end %>
       </ol>
@@ -32,8 +34,10 @@
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
-            <p><%= checkin.user2.name %></p>
-            <p><%= checkin.count %></p>
+            <span class='info'>
+              <p><%= checkin.user2.name %></p>
+              <p>checkins: <%= checkin.count %></p>
+            </span>
           </li>
         <% end %>
       </ol>
@@ -45,8 +49,10 @@
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
-            <p><%= checkin.user2.name %></p>
-            <!-- <p><%= checkin.checkin_data.max(:timestamp) %></p> -->
+            <span class='info'>
+              <p><%= checkin.user2.name %></p>
+              <p>last: <%= checkin.checkin_data.max(:timestamp) %></p>
+            </span>
           </li>
         <% end %>
       </ol>
