@@ -56,8 +56,8 @@ RealLifeSocial::Application.routes.draw do
 
   devise_for :users
   resources :users, only: :show, key: :uid do
-    collection do
-      get 'me'
+    member do
+      get 'ready'
     end
   end
   match '/user/sign_out' => 'users#destroy', as: :user_sign_out, via: :delete
