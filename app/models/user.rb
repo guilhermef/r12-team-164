@@ -35,6 +35,18 @@ class User
     picture + '?type=large'
   end
 
+  def top_friends
+    checkins_as_user1.desc(:count).limit(10)
+  end
+
+  def worst_friends
+    checkins_as_user1.asc(:count).limit(10)
+  end
+
+  def most_recent
+    checkins_as_user1.desc(:'checkin_data.timestamp').limit(10)
+  end
+
   def self.perform(user_id)
     user = User.find(user_id)
 
