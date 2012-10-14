@@ -1,4 +1,8 @@
+require 'resque/server'
+
 RealLifeSocial::Application.routes.draw do
+  mount Resque::Server.new, :at => "/you_dont_know_this_url"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,8 +58,6 @@ RealLifeSocial::Application.routes.draw do
   match '/users/auth/:provider/callback' => 'users#create', as: :user_callback
 
   devise_for :users
-
-  mount Resque::Server.new, :at => "/you_dont_know_this_url"
 
   # See how all your routes lay out with "rake routes"
 
