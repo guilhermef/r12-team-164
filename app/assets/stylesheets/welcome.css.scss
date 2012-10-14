@@ -30,6 +30,47 @@
     letter-spacing: 1px;
     line-height: 1;
     font-weight:lighter;
-    @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px)
+    @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px);
+  }
+}
+
+.description {
+  margin-top:20px;
+  p {
+    font-size:40px;
+    font-weight:bold;
+    line-height: 40px;
+    color:#000;
+    @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px);
+
+    &.impact{
+      color:#3b5b99;
+    }
+  }
+
+  a {
+    display:block;
+    width:215px;
+    height:46px;
+    background: url(image_path('fb-connect.png')) no-repeat;
+    text-indent:-99999px;
+    overflow:hidden;
+  }
+}
+
+.statistics {
+  margin-top:40px;
+
+  p {
+    margin-right:40px;
+    display:inline-block;
+    font-size:40px;
+    font-weight:bold;
+    color:#000;
+    @include text-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.075) 0 0 30px);
+
+    &:last-child{
+      margin-right:0;
+    }
   }
 }

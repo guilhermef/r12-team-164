@@ -13,6 +13,7 @@ class User
   field :registered, :type => Boolean, :default => false
   field :last_timestamp, :type => Integer
   field :processing, :type => Boolean, :default => false
+  field :friends, :type => Array
 
   has_many :checkins_as_user1, :class_name => 'UserCheckin', :inverse_of => :user1
   has_many :checkins_as_user2, :class_name => 'UserCheckin', :inverse_of => :user2
@@ -25,6 +26,10 @@ class User
     self.name = auth['info']['name']
     self.photo_url = auth['info']['image']
     self.registered = true
+  end
+
+  def can_see?(current_user_uid)
+    self.registered and self.friends.include?(current_user_uid)
   end
 
   def picture

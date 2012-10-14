@@ -1,5 +1,23 @@
-<div class='welcome'>
+<section class='welcome'>
   <div class='container'>
     <h1>Real Life Social</h1>
   </div>
-</div>
+</section>
+
+<section class='description'>
+  <div class='container'>
+    <p>It doesn't matter how many friends you have on facebook if you don't actually meet them.</p>
+    <p>Get real!</p>
+    <p class='impact'>Get Real Life Social!</p>
+    <% unless current_user %>
+      <a href='/users/auth/facebook'>Login</a>
+    <% end %>
+  </div>
+</section>
+
+<section class='statistics'>
+  <div class='container'>
+    <p>Users: <%= users_total %></p>
+    <p>Processed checkins: <%= checkins_total %></p>
+  </div>
+</section>
