@@ -10,7 +10,6 @@
 </section>
 
 <section class='user-statistics'>
-  <div id="line-chart"></div>
   <div class='container'>
     <ol>
       <% current_user.top_friends.each_with_index do |checkin, i| %>
@@ -43,6 +42,7 @@
       <% end %>
     </ol>
   </div>
+  <div id="line-chart"></div>
 </section>
 
 <script>
