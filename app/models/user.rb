@@ -29,7 +29,7 @@ class User
   end
 
   def can_see?(other_user_uid)
-    uid == other_user_uid or self.friends.include?(other_user_uid)
+    uid.to_s == other_user_uid.to_s or self.friends.include?(other_user_uid.to_s)
   end
 
   def picture
