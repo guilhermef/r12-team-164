@@ -17,7 +17,7 @@
           <div class="pull-right login">
             <% if user_signed_in? %>
               <span>Welcome <%= current_user.name %></span>
-              <%= link_to 'my profile', user_url(current_user.uid) %>
+              <%= link_to 'my profile', user_url(:me) %>
               <%= link_to 'logout', user_sign_out_url, method: :delete %>
             <% else %>
               <span class='f_logo'></span>

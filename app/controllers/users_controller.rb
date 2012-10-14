@@ -19,7 +19,12 @@ class UsersController < ApplicationController
     Resque.enqueue(User, user.id)
 
     sign_in user
-    redirect_to user_url(user.uid)
+    redirect_to user_url(:me)
+  end
+
+  def me
+    @user = current_user
+    render :show
   end
 
   def show

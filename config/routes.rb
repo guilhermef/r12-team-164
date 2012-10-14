@@ -55,7 +55,11 @@ RealLifeSocial::Application.routes.draw do
   root :to => 'welcome#index'
 
   devise_for :users
-  resources :users, only: :show, key: :uid
+  resources :users, only: :show, key: :uid do
+    collection do
+      get 'me'
+    end
+  end
   match '/user/sign_out' => 'users#destroy', as: :user_sign_out, via: :delete
   match '/users/auth/:provider/callback' => 'users#create', as: :user_callback
 
