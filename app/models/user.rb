@@ -52,6 +52,10 @@ class User
     checkins_as_user1.desc(:'checkin_data.timestamp').limit(10)
   end
 
+  def last_checkin
+    most_recent[0].checkin_data[0]
+  end
+
   def self.perform(user_id)
     user = User.find(user_id)
 

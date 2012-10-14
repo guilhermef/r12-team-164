@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to root_url unless current_user
+    @user = User.where(:uid => params[:id]).first
+    redirect_to root_url if @user.nil? or current_user.uid != @user.uid
   end
 
   def destroy

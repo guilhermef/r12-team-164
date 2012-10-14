@@ -1,11 +1,11 @@
 <section class='profile'>
   <div class='container'>
     <div class='picture'>
-      <%= image_tag current_user.large_picture, width: 200, alt: current_user.name %>
+      <%= image_tag current_user.large_picture, width: 200, alt: @user.name %>
     </div>
     <div class='info'>
-      <h2><%= current_user.name %></h2>
-      <p>last checkin:</p>
+      <h2><%= @user.name %></h2>
+      <p>last checkin: <%= @user.last_checkin.place_name %></p>
       <div id='last_checkin_place'></div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class='top10 bf'>
       <h4>best friends</h4>
       <ol>
-        <% current_user.top_friends.each_with_index do |checkin, i| %>
+        <% @user.top_friends.each_with_index do |checkin, i| %>
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
@@ -31,7 +31,7 @@
     <div class='top10 wf'>
       <h4>worst friends</h4>
       <ol>
-        <% current_user.worst_friends.each_with_index do |checkin, i| %>
+        <% @user.worst_friends.each_with_index do |checkin, i| %>
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
@@ -46,7 +46,7 @@
     <div class='top10 recent'>
       <h4>most recent</h4>
       <ol>
-        <% current_user.most_recent.each_with_index do |checkin, i| %>
+        <% @user.most_recent.each_with_index do |checkin, i| %>
           <li>
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
@@ -107,7 +107,7 @@
         borderWidth: 0
       },
       series: [
-      <% current_user.checkins_as_user1.each_with_index do |checkin, i| %>
+      <% @user.checkins_as_user1.each_with_index do |checkin, i| %>
         <% if i > 0 %>,<% end %>
         {
           name: '<%= checkin.user2.name %>',
@@ -122,10 +122,10 @@
 
   <script>
     $(function() {
-      var position = new google.maps.LatLng(<%= current_user.most_recent[0].checkin_data[0].place_lat %>, <%= current_user.most_recent[0].checkin_data[0].place_long %>);
+      var position = new google.maps.LatLng(<%= @user.last_checkin.place_lat %>, <%= @user.last_checkin.place_long %>);
       var mapOptions = {
         center: position,
-        zoom: 18,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       var map = new google.maps.Map(document.getElementById("last_checkin_place"),
@@ -135,7 +135,7 @@
         map: map,
         position: position,
         visible: true,
-        title: '<%= current_user.most_recent[0].checkin_data[0].place_name %>'
+        title: '<%= @user.last_checkin.place_name %>'
       }
 
       var marker = new google.maps.Marker(markerOptions);
