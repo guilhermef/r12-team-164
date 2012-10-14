@@ -15,8 +15,9 @@ gem 'oauth2'
 gem 'koala'
 gem 'resque'
 
-# To use debugger
-gem 'debugger'
+group :development do
+  gem 'debugger'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
