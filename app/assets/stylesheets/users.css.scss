@@ -8,6 +8,7 @@
 
   .picture {
     width:200px;
+    height:190px;
     display:inline-block;
     overflow:hidden;
     @include border-radius(4px);
@@ -88,4 +89,15 @@
   #line-chart {
     margin: 30px auto 0;
   }
+
+  .spinner {
+    height: 200px;
+ 
+    p {
+      text-align: center;
+      color: #333;
+      font-size: 22px;
+    }
+  }
+
 }

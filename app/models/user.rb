@@ -56,6 +56,10 @@ class User
     @last_checkin ||= most_recent[0].checkin_data.to_a.max { |data| data.timestamp.to_i }
   end
 
+  def data_available?
+    !!last_timestamp
+  end
+
   def self.perform(user_id)
     user = User.find(user_id)
 
