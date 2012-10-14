@@ -53,7 +53,7 @@ class User
   end
 
   def last_checkin
-    @last_checkin ||= most_recent[0].checkin_data.to_a.max { |data| data.timestamp.to_i }
+    @last_checkin ||= most_recent[0].checkin_data.to_a.max_by(&:timestamp)
   end
 
   def data_available?
