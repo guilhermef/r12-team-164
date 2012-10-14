@@ -1,4 +1,8 @@
+require 'resque/server'
+
 RealLifeSocial::Application.routes.draw do
+  mount Resque::Server.new, :at => "/you_dont_know_this_url"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
