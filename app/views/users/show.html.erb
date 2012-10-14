@@ -1,7 +1,7 @@
 <section class='profile'>
   <div class='container'>
     <div class='picture'>
-      <%= image_tag current_user.large_picture, width: 200, alt: @user.name %>
+      <%= image_tag @user.large_picture, width: 200, alt: @user.name %>
     </div>
     <div class='info'>
       <h2><%= @user.name %></h2>

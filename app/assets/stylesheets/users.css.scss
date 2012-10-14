@@ -87,7 +87,8 @@
     }
   }
   #line-chart {
-    margin: 30px auto 0;
+    @include box-shadow(rgba(#000, .4) 1px 1px 2px);
+    margin: 30px auto;
   }
 
   .spinner {
@@ -100,4 +101,8 @@
     }
   }
 
+}
+
+.footer {
+  margin-top:0;
 }
