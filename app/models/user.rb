@@ -75,7 +75,7 @@ class User
     )
 
     if user.last_timestamp
-      @checkins.filter { |checkin| checkin['timestamp'].to_i > user.last_timestamp }
+      @checkins.keep_if { |checkin| checkin['timestamp'].to_i > user.last_timestamp }
     end
     last_timestamp = 0
 
