@@ -53,7 +53,7 @@ class User
   end
 
   def last_checkin
-    most_recent[0].checkin_data[0]
+    @last_checkin ||= most_recent[0].checkin_data.to_a.max { |data| data.timestamp.to_i }
   end
 
   def self.perform(user_id)
