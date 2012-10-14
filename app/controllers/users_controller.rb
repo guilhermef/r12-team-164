@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, except: [:create]
 
   def create
     auth = request.env["omniauth.auth"]
