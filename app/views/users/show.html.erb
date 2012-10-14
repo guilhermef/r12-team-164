@@ -21,7 +21,11 @@
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
             <span class='info'>
-              <p><%= checkin.user2.name %></p>
+              <% if checkin.user2.registered? %>
+                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+              <% else%>
+                <p><%= checkin.user2.name %></p>
+              <% end %>
               <p>checkins: <%= checkin.count %></p>
             </span>
           </li>
@@ -36,7 +40,11 @@
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
             <span class='info'>
-              <p><%= checkin.user2.name %></p>
+              <% if checkin.user2.registered? %>
+                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+              <% else%>
+                <p><%= checkin.user2.name %></p>
+              <% end %>
               <p>checkins: <%= checkin.count %></p>
             </span>
           </li>
@@ -51,7 +59,11 @@
             <span class='position'><%= i + 1 %></span>
             <%= image_tag(checkin.user2.picture) %>
             <span class='info'>
-              <p><%= checkin.user2.name %></p>
+              <% if checkin.user2.registered? %>
+                <%= link_to checkin.user2.name, user_url(checkin.user2.uid) %>
+              <% else%>
+                <p><%= checkin.user2.name %></p>
+              <% end %>
               <p>last: <%= checkin.checkin_data.max(:timestamp).strftime('%D - %T') %></p>
             </span>
           </li>

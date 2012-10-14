@@ -23,8 +23,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.where(:uid => params[:id]).first
-    redirect_to root_url if @user.nil? or current_user.uid != @user.uid
+    @user = User.where(:uid => params[:id], :registered => true).first
+    redirect_to root_url if @user.nil? or !current_user.can_see?(@user.uid)
   end
 
   def destroy

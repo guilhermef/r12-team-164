@@ -13,7 +13,7 @@ class User
   field :registered, :type => Boolean, :default => false
   field :last_timestamp, :type => Integer
   field :processing, :type => Boolean, :default => false
-  field :friends, :type => Array
+  field :friends, :type => Array, :default => []
 
   has_many :checkins_as_user1, :class_name => 'UserCheckin', :inverse_of => :user1
   has_many :checkins_as_user2, :class_name => 'UserCheckin', :inverse_of => :user2
@@ -28,8 +28,8 @@ class User
     self.registered = true
   end
 
-  def can_see?(current_user_uid)
-    self.registered and self.friends.include?(current_user_uid)
+  def can_see?(other_user_uid)
+    uid == other_user_uid or self.friends.include?(other_user_uid)
   end
 
   def picture
@@ -60,6 +60,10 @@ class User
     user = User.find(user_id)
 
     graph = Koala::Facebook::API.new(user.token)
+
+    friends_list = graph.fql_query('SELECT uid2 FROM friend WHERE uid1 = me()')
+    user.friends = friends_list.collect{|u| u['uid2']}
+
     @checkins = graph.fql_query(<<-EOF
       SELECT author_uid, checkin_id, tagged_uids, page_id, timestamp
       FROM checkin
