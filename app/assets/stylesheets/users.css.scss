@@ -41,6 +41,7 @@
     .info {
       display:inline-block;
       vertical-align:top;
+      margin-top:5px;
       p {
         display:block;
         margin:0;
@@ -70,5 +71,8 @@
     p {
       display:inline-block;
     }
+  }
+  #line-chart {
+    margin-top:30px;
   }
 }
