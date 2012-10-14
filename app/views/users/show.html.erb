@@ -5,7 +5,7 @@
     </div>
     <div class='info'>
       <h2><%= @user.name %></h2>
-      <% if current_user.data_available? %>
+      <% if @user.data_available? %>
         <p>last seen at <%= @user.last_checkin.place_name %></p>
         <div id='last_checkin_place'></div>
       <% end %>
@@ -14,7 +14,7 @@
 </section>
 
 <section class='user-statistics'>
-  <% if current_user.data_available? %>
+  <% if @user.data_available? %>
     <div class='container'>
       <div class='top10 bf'>
         <h4>best friends</h4>
@@ -89,6 +89,10 @@
 
   <script>
     (function($) {
+      var target = $('.container.spinner');
+      if (target.length === 0) {
+        return;
+      }
       var opts = {
         lines: 13, // The number of lines to draw
         length: 24, // The length of each line
@@ -106,10 +110,19 @@
         top: 'auto', // Top position relative to parent in px
         left: 'auto' // Left position relative to parent in px
       };
-      var target = $('.container.spinner');
-      if (target.length > 0) {
-        new Spinner(opts).spin(target[0]);
-      }
+      new Spinner(opts).spin(target[0]);
+
+      var checkReadyFunc = function() {
+        $.getJSON('<%= ready_user_url(@user.uid) %>.json', function(data) {
+          if (data.ready) {
+            document.location.href = document.location.href;
+          } else {
+            setTimeout(checkReadyFunc, 1000);
+          }
+        });
+      };
+
+      setTimeout(checkReadyFunc, 0);
     }(jQuery));
   </script>
 
