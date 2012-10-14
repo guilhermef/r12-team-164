@@ -79,7 +79,7 @@
 
     <div class="container spinner">
       <p>Hang on, we're preparing your data</p>
-    </div>      
+    </div>
 
   <% end %>
 </section>
@@ -182,26 +182,28 @@
   });
   </script>
 
-  <script>
-    $(function() {
-      var position = new google.maps.LatLng(<%= @user.last_checkin.place_lat %>, <%= @user.last_checkin.place_long %>);
-      var mapOptions = {
-        center: position,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      var map = new google.maps.Map(document.getElementById("last_checkin_place"),
-          mapOptions);
+  <% unless @user.last_timestamp.nil? %>
+    <script>
+      $(function() {
+        var position = new google.maps.LatLng(<%= @user.last_checkin.place_lat %>, <%= @user.last_checkin.place_long %>);
+        var mapOptions = {
+          center: position,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("last_checkin_place"),
+            mapOptions);
 
-      var markerOptions = {
-        map: map,
-        position: position,
-        visible: true,
-        title: '<%= @user.last_checkin.place_name %>'
-      }
+        var markerOptions = {
+          map: map,
+          position: position,
+          visible: true,
+          title: '<%= @user.last_checkin.place_name %>'
+        }
 
-      var marker = new google.maps.Marker(markerOptions);
-    });
-  </script>
+        var marker = new google.maps.Marker(markerOptions);
+      });
+    </script>
+  <% end %>
 
 <% end %>
