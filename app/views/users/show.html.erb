@@ -115,7 +115,7 @@
       var checkReadyFunc = function() {
         $.getJSON('<%= ready_user_url(@user.uid) %>.json', function(data) {
           if (data.ready) {
-            document.location.href = document.location.href;
+            document.location.href = document.location.href.replace(/#.*$/, '');
           } else {
             setTimeout(checkReadyFunc, 1000);
           }
