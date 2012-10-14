@@ -50,7 +50,7 @@
             <%= image_tag(checkin.user2.picture) %>
             <span class='info'>
               <p><%= checkin.user2.name %></p>
-              <p>last: <%= checkin.checkin_data.max(:timestamp) %></p>
+              <p>last: <%= checkin.checkin_data.max(:timestamp).strftime('%D - %T') %></p>
             </span>
           </li>
         <% end %>
