@@ -50,10 +50,10 @@ RealLifeSocial::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'welcome#index'
 
-  resource :user, only: :show
-  match '/users/auth/:provider/callback' => 'users#create', as: :user_callback
-
   devise_for :users
+  resources :users, only: :show, key: :uid
+  match '/user/sign_out' => 'users#destroy', as: :user_sign_out, via: :delete
+  match '/users/auth/:provider/callback' => 'users#create', as: :user_callback
 
   # See how all your routes lay out with "rake routes"
 

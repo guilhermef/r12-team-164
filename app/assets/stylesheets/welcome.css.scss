@@ -5,6 +5,17 @@
 
 .login {
   margin-top: 8px;
+  .f_logo {
+    background: url(image_path('f_logo.png')) no-repeat;
+    display:inline-block;
+    width:20px;
+    height:20px;
+  }
+  .button {
+    display:inline-block;
+    vertical-align:top;
+    padding-left:10px;
+  }
 }
 
 .welcome {

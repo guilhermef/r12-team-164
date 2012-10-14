@@ -15,10 +15,12 @@
           </a>
           <div class="pull-right login">
             <% if user_signed_in? %>
-              <div id="fb-server-authenticated"></div>
-              <span>Welcome <%= current_user.email %></span>
+              <span>Welcome <%= current_user.name %></span>
+              <%= link_to 'my profile', user_url(current_user.uid) %>
+              <%= link_to 'logout', user_sign_out_url, method: :delete %>
             <% else %>
-              <%= link_to 'login with facebook', '/users/auth/facebook' %>
+              <span class='f_logo'></span>
+              <%= link_to 'login', '/users/auth/facebook', class: 'button' %>
             <% end %>
           </div>
         </div>

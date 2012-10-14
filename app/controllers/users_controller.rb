@@ -24,9 +24,15 @@ class UsersController < ApplicationController
     Resque.enqueue(User, user.id)
 
     sign_in user
-    redirect_to user_url
+    redirect_to user_url(user.uid)
   end
 
   def show
+    redirect_to root_url unless current_user
+  end
+
+  def destroy
+    sign_out current_user
+    redirect_to root_url
   end
 end
