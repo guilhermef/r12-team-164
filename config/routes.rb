@@ -55,6 +55,8 @@ RealLifeSocial::Application.routes.draw do
 
   devise_for :users
 
+  mount Resque::Server.new, :at => "/you_dont_know_this_url"
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
