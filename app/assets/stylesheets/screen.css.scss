@@ -4,3 +4,23 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
+@import "compass/css3";
+
+
+#rumble2012 {
+    left: auto !important;
+    top: 34px !important;
+    background-color: crimson !important;
+    width: 250px !important;
+    right: -62px;
+    @include transform(rotate(45deg));
+
+    span {
+        width: 155px;
+        display: inline-block;
+    }
+
+    #rumbleCloseButton {
+        display: none;
+    }
+}
